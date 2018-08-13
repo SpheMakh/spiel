@@ -82,3 +82,23 @@ smulti: .virtualenv/bin/cwltoil
 		--workDir $(CURDIR)/work \
 		multi.cwl \
 		jobs/meerkat16.yaml
+
+run-mask: .virtualenv/bin/cwltool docker
+	.virtualenv/bin/cwltool \
+		--tmpdir `pwd`/tmp/ \
+		--cachedir `pwd`/cache/ \
+		--outdir `pwd`/results/ \
+		cwl/workflows/make_dirty.cwl \
+		cwl/jobs/meerkat16.yaml
+
+multi-mask: .virtualenv/bin/cwltoil docker
+	mkdir -p $(RUN)/results
+	.virtualenv/bin/toil-cwl-runner \
+		--stats \
+	    --cleanWorkDir onSuccess \
+		--logFile $(RUN)/log \
+		--outdir $(RUN)/results \
+		--jobStore file:///$(CURDIR)/$(RUN)/job_store \
+		--workDir $(CURDIR)/work \
+		cwl/workflows/make_dirty_multi.cwl \
+		cwl/jobs/meerkat16.yaml

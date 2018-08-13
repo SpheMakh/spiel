@@ -15,7 +15,7 @@ RUN docker-apt-install \
     wsclean \
     casalite
 
-RUN pip --no-cache-dir install numpy cwlref-runner html5lib "toil[cwl]"
+RUN pip --no-cache-dir install numpy cwlref-runner html5lib "toil[cwl]" scikit-image
 
 RUN docker-apt-install python-astropy
 RUN docker-apt-install tigger-lsm

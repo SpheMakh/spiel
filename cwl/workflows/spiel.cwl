@@ -78,7 +78,7 @@ outputs:
 
 steps:
   randomize:
-    run: steps/randomize.cwl
+    run: ../steps/randomize.cwl
     in:
        random_seed: random_seed
        dfreq_max: dfreq_max
@@ -91,7 +91,7 @@ steps:
        [dec, synthesis, dfreq, flux_scale]
 
   simms:
-    run: steps/simms.cwl
+    run: ../steps/simms.cwl
     in:
       telescope: telescope
       ra: ra
@@ -109,7 +109,7 @@ steps:
       [ms]
 
   make_skymodel:
-    run: steps/skymodel.cwl
+    run: ../steps/skymodel.cwl
     in:
       ra: ra
       dec: randomize/dec
@@ -129,7 +129,7 @@ steps:
 
 
   write_settings:
-    run: steps/write_settings.cwl
+    run: ../steps/write_settings.cwl
     in:
       ra: ra
       dec: randomize/dec
@@ -149,7 +149,7 @@ steps:
 
 
   simulator:
-    run: steps/simulator.cwl
+    run: ../steps/simulator.cwl
     in:
       ms: simms/ms
       config: config
@@ -168,7 +168,7 @@ steps:
       [ms_out]
 
   wsclean:
-    run: steps/wsclean.cwl
+    run: ../steps/wsclean.cwl
     in:
       size_x: size_x
       size_y: size_y
@@ -186,7 +186,7 @@ steps:
       [cleaned, dirty, residual, model, psf]
 
   make_bigpsf:
-    run: steps/bigpsf.cwl
+    run: ../steps/bigpsf.cwl
     in:
       size_x: size_x
       size_y: size_y
@@ -196,7 +196,7 @@ steps:
       [bigpsf]
 
   tigger_restore:
-    run: steps/tigger_restore.cwl
+    run: ../steps/tigger_restore.cwl
     in:
       image: wsclean/dirty
       skymodel: make_skymodel/skymodel
@@ -204,7 +204,7 @@ steps:
       [fitsmodel]
 
   rename_skymodel:
-    run: steps/rename.cwl
+    run: ../steps/rename.cwl
     in:
       file: make_skymodel/skymodel
       prefix: random_seed
@@ -212,7 +212,7 @@ steps:
       - renamed
 
   rename_cleaned:
-    run: steps/rename.cwl
+    run: ../steps/rename.cwl
     in:
       file: wsclean/cleaned
       prefix: random_seed
@@ -220,7 +220,7 @@ steps:
       - renamed
 
   rename_dirty:
-    run: steps/rename.cwl
+    run: ../steps/rename.cwl
     in:
       file: wsclean/dirty
       prefix: random_seed
@@ -228,7 +228,7 @@ steps:
       - renamed
 
   rename_residual:
-    run: steps/rename.cwl
+    run: ../steps/rename.cwl
     in:
       file: wsclean/residual
       prefix: random_seed
@@ -236,7 +236,7 @@ steps:
       - renamed
 
   rename_model:
-    run: steps/rename.cwl
+    run: ../steps/rename.cwl
     in:
       file: wsclean/model
       prefix: random_seed
@@ -244,7 +244,7 @@ steps:
       - renamed
 
   rename_fitsmodel:
-    run: steps/rename.cwl
+    run: ../steps/rename.cwl
     in:
       file: tigger_restore/fitsmodel
       prefix: random_seed
@@ -253,7 +253,7 @@ steps:
 
 
   rename_psf:
-    run: steps/rename.cwl
+    run: ../steps/rename.cwl
     in:
       file: wsclean/psf
       prefix: random_seed
@@ -261,7 +261,7 @@ steps:
       - renamed
 
   rename_bigpsf:
-    run: steps/rename.cwl
+    run: ../steps/rename.cwl
     in:
       file: make_bigpsf/bigpsf
       prefix: random_seed
@@ -270,7 +270,7 @@ steps:
 
 
   rename_settings:
-    run: steps/rename.cwl
+    run: ../steps/rename.cwl
     in:
       file: write_settings/settings
       prefix: random_seed

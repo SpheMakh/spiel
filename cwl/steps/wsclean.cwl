@@ -22,8 +22,8 @@ inputs:
     default: 512
  
   niter:
-   type: int
-   default: 1000
+   type: int?
+   default: 0
    inputBinding:
      prefix: -niter
 
@@ -78,7 +78,7 @@ arguments:
 
 outputs:
   dirty:
-    type: File
+    type: File?
     outputBinding:
       glob: wsclean-dirty.fits
 
@@ -88,16 +88,16 @@ outputs:
       glob: wsclean-image.fits
 
   model:
-    type: File
+    type: File?
     outputBinding:
       glob: wsclean-model.fits
 
   residual:
-    type: File
+    type: File?
     outputBinding:
       glob: wsclean-residual.fits
 
   psf:
-    type: File
+    type: File?
     outputBinding:
       glob: wsclean-psf.fits
