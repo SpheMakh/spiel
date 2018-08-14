@@ -13,8 +13,10 @@ inputs:
  freq0: float
  nchan: int
  config: File
- ra: float
- dec: float
+ ra_min: float
+ ra_max: float 
+ dec_min: float
+ dec_max: float
  scale: string
  size_x: int
  size_y: int
@@ -62,6 +64,10 @@ steps:
     run: ../steps/randomize.cwl
     in:
        random_seed: random_seed
+       ra_min: ra_min
+       a_max: ra_max
+       dec_min: dec_min
+       dec_max: dec_max
        dfreq_max: dfreq_max
        dfreq_min: dfreq_min
        synthesis_max: synthesis_max
@@ -69,13 +75,13 @@ steps:
        flux_scale_min: flux_scale_min
        flux_scale_max: flux_scale_max
     out:
-       [dec, synthesis, dfreq, flux_scale]
+       [dec, ra, synthesis, dfreq, flux_scale]
 
   simms:
     run: ../steps/simms.cwl
     in:
       telescope: telescope
-      ra: ra
+      ra: randomize/ra
       dec: randomize/dec
       synthesis: randomize/synthesis
       dtime: dtime
@@ -91,7 +97,7 @@ steps:
   make_skymodel:
     run: ../steps/skymodel.cwl
     in:
-      ra: ra
+      ra: randomize/ra
       dec: randomize/dec
       seed: random_seed
       freq0: freq0
@@ -109,7 +115,7 @@ steps:
   write_settings:
     run: ../steps/write_settings.cwl
     in:
-      ra: ra
+      ra: randomize/ra
       dec: randomize/dec
       seed: random_seed
       freq0: freq0

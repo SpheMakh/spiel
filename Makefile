@@ -89,7 +89,7 @@ run-mask: .virtualenv/bin/cwltool docker
 		--cachedir `pwd`/cache/ \
 		--outdir `pwd`/results/ \
 		cwl/workflows/make_dirty.cwl \
-		cwl/jobs/meerkat16.yaml
+		cwl/jobs/meerkat16_mask.yaml
 
 multi-mask: .virtualenv/bin/cwltoil docker
 	mkdir -p $(RUN)/results
@@ -101,4 +101,4 @@ multi-mask: .virtualenv/bin/cwltoil docker
 		--jobStore file:///$(CURDIR)/$(RUN)/job_store \
 		--workDir $(CURDIR)/work \
 		cwl/workflows/make_dirty_multi.cwl \
-		cwl/jobs/meerkat16.yaml
+		cwl/jobs/meerkat16_mask.yaml

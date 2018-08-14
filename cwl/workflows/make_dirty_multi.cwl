@@ -13,9 +13,10 @@ inputs:
  freq0: float
  nchan: int
  config: File
- ra: float
- dec: float
- mgain: float
+ ra_min: float
+ ra_max: float
+ dec_min: float
+ dec_max: float
  scale: string
  size_x: int
  size_y: int
@@ -26,8 +27,6 @@ inputs:
  weight: string
  randomise_pos: boolean
  sefd: float
- auto_mask: float
- auto_threshold: float
  nant: int
  synthesis_min: float
  synthesis_max: float
@@ -66,8 +65,10 @@ steps:
       freq0: freq0
       nchan: nchan
       config: config
-      ra: ra
-      dec: dec
+      ra_min: ra_min
+      ra_max: ra_max
+      dec_min: dec_min
+      dec_max: dec_max
       scale: scale
       size_x: size_x
       size_y: size_y

@@ -11,6 +11,14 @@ inputs:
     type: int?
     default: 0
 
+  ra_min:
+    type: float?
+    default: -15
+
+  ra_max:
+    type: float?
+    default: 15
+
   dec_min:
     type: float?
     default: -90
@@ -50,6 +58,7 @@ arguments:
 
       random.seed($(inputs.random_seed))
 
+      ra = random.uniform($(inputs.ra_min), $(inputs.ra_max))
       dec = random.uniform($(inputs.dec_min), $(inputs.dec_max))
       synthesis = random.uniform($(inputs.synthesis_min), $(inputs.synthesis_max))
       dfreq = int(random.uniform($(inputs.dfreq_min), $(inputs.dfreq_max)))
@@ -57,6 +66,7 @@ arguments:
       flux_scale = 10**random.uniform($(inputs.flux_scale_min), $(inputs.flux_scale_max))
 
       print(json.dumps({
+        'ra' : ra,
         'dec': dec,
         'synthesis': synthesis,
         'dfreq': dfreq,
@@ -66,6 +76,8 @@ arguments:
 stdout: cwl.output.json
 
 outputs:
+  ra:
+    type: float
   dec:
     type: float
 
