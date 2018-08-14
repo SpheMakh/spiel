@@ -94,4 +94,4 @@ steps:
 
     scatter: random_seed
 
-    out: [skymodel, dirty, simulated_vis, psf, mask, settings]
+    out: [skymodel, dirty, psf, mask, settings]

@@ -49,9 +49,6 @@ outputs:
   psf:
     type: File
     outputSource: rename_psf/renamed
-  simulated_vis:
-    type: Directory
-    outputSource: simulator/ms_out
   settings:
     type: File
     outputSource: rename_settings/renamed
