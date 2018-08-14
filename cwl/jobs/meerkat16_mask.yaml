@@ -1,0 +1,66 @@
+# Telescope name
+telescope: meerkat
+antennas:
+  class: Directory 
+  path: ../../data/MeerKAT16_ANTENNAS
+
+# number of antennas, 7 for KAT-7, typically 64 for Meerkat
+nant: 16
+# Antenna SEFD
+sefd: 520
+
+# Synthesis time of observation in hours
+synthesis_min: 2 
+synthesis_max: 12
+
+# Integration time in seconds
+dtime: 10
+
+# Start frequency of observation
+freq0: 1285e6
+
+# Channel width
+dfreq_min: 800e6
+dfreq_max: 8506e6
+
+# Number of channels
+nchan: 1
+
+flux_scale_min: -5  #  flux_scale = 10**random.range(min, max)
+flux_scale_max: 0.5
+
+
+# simulation properties
+config:
+  class: File
+  path: ../../data/tdlconf.profiles
+# pointing/phase centre in degrees
+ra_min: -15.0
+ra_max: 15.0
+dec_min: -90.0
+dec_max: 0.0
+# sky model parameters
+nsrc: 100
+fov: 0.25
+pb_fwhm: 0.0725  # number of sources in the primary beam
+randomise_pos: true
+# Corrupt visibilities
+gain_errors: 1 # 1|0
+gainamp_min_error: 0.9 # no gain error is 1.0
+gainamp_max_error: 1.2 # no gain error is 1.0
+gainphase_min_error: 2 # in degrees
+gainphase_max_error: 10 # in degrees
+# Imaging params
+size_x: 512
+size_y: 512
+scale: 1.3asec
+niter: 100000000
+mgain: 1.0
+column: DATA
+weight: uniform
+
+# This seed controls the telescope and sky model simulations
+random_seed: 2
+
+# Repeat simulation for multiple randomizer seeds
+random_seeds: [1900, 1901, 1902, 1903, 1904, 1905, 1906, 1907, 1908, 1909, 1910, 1911, 1912, 1913, 1914, 1915, 1916, 1917, 1918, 1919, 1920, 1921, 1922, 1923, 1924, 1925, 1926, 1927, 1928, 1929, 1930, 1931, 1932, 1933, 1934, 1935, 1936, 1937, 1938, 1939, 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947, 1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
